@@ -1,26 +1,61 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Producto } from './entities/producto.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProductosService {
-  create(createProductoDto: CreateProductoDto) {
-    return 'This action adds a new producto';
+  constructor(
+    @InjectRepository(Producto)
+    private productoRepository: Repository<Producto>,
+  ) {}
+  
+  async create(CreateProductoDto: CreateProductoDto):Promise<Producto> {
+    const existeProducto = await this.productoRepository.findOneBy({
+      nombre: CreateProductoDto.nombre,
+      precio: CreateProductoDto.precio,
+      cantidad_disponible: CreateProductoDto.cantidad_disponible,
+      id_categoria : CreateProductoDto.id_categoria
+    })
+    if (existeProducto){
+      throw new ConflictException('el cliente ya existe')
+    }
+    return this.productoRepository.save({
+      nombre: CreateProductoDto.nombre.trim(),
+      precio:CreateProductoDto.precio.valueOf(),
+      cantidad_disponible :CreateProductoDto.cantidad_disponible.valueOf(),
+      id_categoria: CreateProductoDto.id_categoria.valueOf()
+    });
   }
 
-  findAll() {
-    return `This action returns all productos`;
+  async findAll():Promise<Producto[]> {
+    return this.productoRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} producto`;
+  async findOne(id: number): Promise<Producto> {
+    const existeProducto =await this.productoRepository.findOneBy({id});
+    if(!existeProducto){
+      throw new NotFoundException('no existe el producto ${id}');
+    }
+    return existeProducto;
   }
 
-  update(id: number, updateProductoDto: UpdateProductoDto) {
-    return `This action updates a #${id} producto`;
+  async update(id: number, UpdateProductoDto: UpdateProductoDto): Promise<Producto> {
+    const Producto = await this.productoRepository.findOneBy({id});
+    if (!Producto){
+      throw new NotFoundException('no existe producto ${id}');
+    }
+    const ProductoUpdate = Object.assign(Producto, UpdateProductoDto);
+    return this.productoRepository.save(ProductoUpdate);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} producto`;
+  async remove(id: number) {
+    const existeProducto= await this.productoRepository.findOneBy({id});
+    if (!existeProducto){
+      throw new NotFoundException('no existe producto ${id}');
+    }
+    return this.productoRepository.delete(id);
   }
 }
