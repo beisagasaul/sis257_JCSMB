@@ -10,26 +10,22 @@ import { VentasModule } from './ventas/ventas.module';
 import { ClientesModule } from './clientes/clientes.module';
 import { DetallesVentaModule } from './detalles-venta/detalles-venta.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Categoria } from './categorias/entities/categoria.entity';
-import { Cliente } from './clientes/entities/cliente.entity';
-import { Proveedore } from './proveedores/entities/proveedore.entity';
-import { Producto } from './productos/entities/producto.entity';
-import { Pedido } from './pedidos/entities/pedido.entity';
-import { Venta } from './ventas/entities/venta.entity';
-import { DetallesPedido } from './detalles-pedido/entities/detalles-pedido.entity';
 import { DetallesVenta } from './detalles-venta/entities/detalles-venta.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'usrsis257',
-      password: 'Sis257...',
-      database: 'sis257_licoreria',
-      entities:[Categoria,Cliente,Proveedore,Producto,Pedido,Venta,DetallesPedido,DetallesVenta],
+      type: process.env.DB_TYPE as any,
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities:[__dirname + '**/*.entity.ts'],
       synchronize: true,
+      autoLoadEntities: true,
     }),  
   
     CategoriasModule, ProveedoresModule, ProductosModule, PedidosModule, DetallesPedidoModule, VentasModule, ClientesModule, DetallesVentaModule,DetallesVenta],
