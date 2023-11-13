@@ -8,7 +8,7 @@ export class CreateClienteDto {
   @MaxLength(50, {
     message: 'El campo nombres no debe ser mayor a 50 caracteres',
   })
-  readonly nombres: string;
+  readonly nombre: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo apellidos no de ser vacío' })
@@ -16,7 +16,7 @@ export class CreateClienteDto {
   @MaxLength(50, {
     message: 'El campo apellidos no debe ser mayor a 50 caracteres',
   })
-  readonly apellidos: string;
+  readonly apellido: string;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo direccion no de ser vacío' })

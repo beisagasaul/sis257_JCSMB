@@ -46,16 +46,16 @@ export class CategoriasService {
   ): Promise<Categoria> {
     const Categoria = await this.categoriaRepository.findOneBy({ id });
     if (!Categoria) {
-      throw new NotFoundException('no existe categoria ${id}');
+      throw new NotFoundException(`No existe el categoria ${id}`);
     }
-    const CategoriaUpdate = Object.assign(Categoria, updateCategoriaDto);
-    return this.categoriaRepository.save(CategoriaUpdate);
+    const categoriaUpdate = Object.assign(Categoria, updateCategoriaDto);
+    return this.categoriaRepository.save(categoriaUpdate);
   }
 
   async remove(id: number) {
     const existeCategoria = await this.categoriaRepository.findOneBy({ id });
     if (!existeCategoria) {
-      throw new NotFoundException('no existe categoria ${id}');
+      throw new NotFoundException(`No existe el categoria ${id}`);
     }
     return this.categoriaRepository.delete(id);
   }

@@ -2,11 +2,13 @@ import { Categoria } from 'src/categorias/entities/categoria.entity';
 import { DetallesVenta } from 'src/detalles-venta/entities/detalles-venta.entity';
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('productos')
@@ -20,16 +22,16 @@ export class Producto {
   @Column('decimal', { precision: 10, scale: 2 })
   precio: number;
 
-  @Column('int')
-  cantidad_disponible: number;
+  @CreateDateColumn({ name: 'fecha_creacion' })
+  fechaCreacion: Date;
 
-  @Column()
-  id_categoria: number;
+  @UpdateDateColumn({ name: 'fecha_modificacion' })
+  fechaModificacion: Date;
 
-  @ManyToOne(() => Categoria)
-  @JoinColumn({ name: 'id_categoria' })
+  @ManyToOne(() => Categoria, (categoria) => categoria.productos)
+  @JoinColumn({ name: 'id_categoria', referencedColumnName: 'id' })
   categoria: Categoria;
 
-  @OneToMany(() => DetallesVenta, (detallesventa) => detallesventa.producto)
-  detallesventas: DetallesVenta[];
+  @OneToMany(() => DetallesVenta, (detallesVenta) => detallesVenta.producto)
+  detallesVentas: DetallesVenta[];
 }

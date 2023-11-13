@@ -10,21 +10,18 @@ import {
 } from 'typeorm';
 
 @Entity('ventas')
-
 export class Venta {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'date' })
-  fecha_venta: Date;
+  @Column({ name: 'fecha_venta', type: 'date' })
+  fechaVenta: Date;
 
-  @Column()
-  id_cliente: number;
-
-  @ManyToOne(() => Cliente)
-  @JoinColumn({ name: 'id_cliente' })
+  @ManyToOne(() => Cliente, (cliente) => cliente.ventas)
+  @JoinColumn({ name: 'id_cliente', referencedColumnName: 'id' })
   cliente: Cliente;
 
-  @OneToMany(() => DetallesVenta, (detallesventa) => detallesventa.venta)
+  @OneToMany(() => DetallesVenta, (detallesVenta) => detallesVenta.venta)
   detallesventas: DetallesVenta[];
+  venta: { id: number; };
 }

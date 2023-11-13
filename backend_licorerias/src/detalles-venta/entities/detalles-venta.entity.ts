@@ -1,9 +1,15 @@
-import { Producto } from "src/productos/entities/producto.entity";
-import { Venta } from "src/ventas/entities/venta.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Producto } from 'src/productos/entities/producto.entity';
+import { Venta } from 'src/ventas/entities/venta.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('detalles-venta')
-
 export class DetallesVenta {
   @PrimaryGeneratedColumn()
   id: number;
@@ -11,17 +17,14 @@ export class DetallesVenta {
   @Column()
   cantidad: number;
 
-  @Column()
-  id_venta: number;
+  @CreateDateColumn({ name: 'fecha_creacion' })
+  fechaCreacion: Date;
 
-  @Column()
-  id_producto: number;
-
-  @ManyToOne(() => Venta)
-  @JoinColumn({ name: 'id_venta' })
+  @ManyToOne(() => Venta, (venta) => venta.detallesventas)
+  @JoinColumn({ name: 'id_venta', referencedColumnName: 'id' })
   venta: Venta;
 
-  @ManyToOne(() => Producto)
-  @JoinColumn({ name: 'id_producto' })
+  @ManyToOne(() => Producto, (producto) => producto.detallesVentas)
+  @JoinColumn({ name: 'id_producto', referencedColumnName: 'id' })
   producto: Producto;
 }
