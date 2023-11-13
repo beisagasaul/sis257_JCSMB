@@ -15,6 +15,12 @@ async function bootstrap() {
     .setDescription('Backend de licoreria de Aplicación Int/Internet II')
     .setVersion('1.0')
     .addTag('categorias, clientes, detalles-venta, productos, ventas, usuarios')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+    })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);

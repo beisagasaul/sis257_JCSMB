@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DetallesVenta } from './detalles-venta/entities/detalles-venta.entity';
 import { ConfigModule } from '@nestjs/config';
 import { UsuariosModule } from './usuarios/usuarios.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     DetallesVentaModule,
     DetallesVenta,
     UsuariosModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
