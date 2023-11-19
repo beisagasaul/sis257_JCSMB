@@ -54,7 +54,7 @@ export class ProductosService {
   ): Promise<Producto> {
     const producto = await this.productoRepository.findOneBy({ id });
     if (!producto) {
-      throw new NotFoundException(`No existe la producto ${id}`);
+      throw new NotFoundException(`No existe el producto ${id}`);
     }
     const productoUpdate = Object.assign(producto, updateProductoDto);
     productoUpdate.categoria = {

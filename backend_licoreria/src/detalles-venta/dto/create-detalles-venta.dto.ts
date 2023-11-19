@@ -8,6 +8,19 @@ export class CreateDetallesVentaDto {
   readonly cantidad: number;
 
   @ApiProperty()
+  @IsNotEmpty({ message: 'El campo precio unitario no de ser vacío' })
+  @IsNumber(
+    {},
+    { message: 'El campo precio unitario debe ser de tipo numérico' },
+  )
+  readonly precioUnitario: number;
+
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo total no de ser vacío' })
+  @IsNumber({}, { message: 'El campo total debe ser de tipo numérico' })
+  readonly total: number;
+
+  @ApiProperty()
   @IsDefined({ message: 'El campo idVEnta debe estar definido' })
   @IsNumber({}, { message: 'El campo idVEnta debe ser de tipo numérico' })
   readonly idVenta: number;

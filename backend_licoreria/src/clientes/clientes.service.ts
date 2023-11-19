@@ -20,17 +20,15 @@ export class ClientesService {
     const existeCliente = await this.clienteRepository.findOneBy({
       nombre: createClienteDto.nombre,
       apellido: createClienteDto.apellido,
-      direccion: createClienteDto.direccion,
-      telefono: createClienteDto.telefono,
+      ci: createClienteDto.ci,
     });
     if (existeCliente) {
-      throw new ConflictException('el cliente ya existe')
+      throw new ConflictException('el cliente ya existe');
     }
     return this.clienteRepository.save({
       nombre: createClienteDto.nombre.trim(),
       apellido: createClienteDto.apellido.trim(),
-      direccion: createClienteDto.direccion.trim(),
-      telefono: createClienteDto.telefono.valueOf(),
+      ci: createClienteDto.ci.trim(),
     });
   }
 
@@ -50,7 +48,7 @@ export class ClientesService {
     id: number,
     UpdateClienteDto: UpdateClienteDto,
   ): Promise<Cliente> {
-    const Cliente = await this.clienteRepository.findOneBy({id});
+    const Cliente = await this.clienteRepository.findOneBy({ id });
     if (!Cliente) {
       throw new NotFoundException('no existe cliente ${id}');
     }

@@ -14,6 +14,9 @@ export class Venta {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column({ name: 'total_venta' })
+  totalVenta: number;
+
   @Column({ name: 'fecha_venta', type: 'date' })
   fechaVenta: Date;
 
@@ -23,5 +26,4 @@ export class Venta {
 
   @OneToMany(() => DetallesVenta, (detallesVenta) => detallesVenta.venta)
   detallesventas: DetallesVenta[];
-  venta: { id: number; };
 }

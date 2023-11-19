@@ -30,6 +30,19 @@ const router = createRouter({
           component: () => import('../components/categoria/CategoriaEdit.vue')
         }
       ]
+    },
+    {
+      path: '/productos',
+      name: 'productos',
+      component: () => import('../views/ProductoView.vue'),
+      children: [
+        { path: '', component: () => import('../components/producto/ProductoList.vue') },
+        { path: 'crear', component: () => import('../components/producto/ProductoCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/producto/ProductoEdit.vue')
+        }
+      ]
     }
   ]
 })

@@ -17,6 +17,12 @@ export class DetallesVenta {
   @Column()
   cantidad: number;
 
+  @Column({ name: 'precio_unitario' })
+  precioUniniratio: number;
+
+  @Column()
+  total: number;
+
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
 

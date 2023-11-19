@@ -19,6 +19,7 @@ export class VentasService {
 
   async create(createVentaDto: CreateVentaDto): Promise<Venta> {
     const existeVeta = await this.ventaRepository.findOneBy({
+      totalVenta: createVentaDto.totalVenta,
       fechaVenta: createVentaDto.fechaVenta,
       cliente: { id: createVentaDto.idCliente },
     });
@@ -28,7 +29,8 @@ export class VentasService {
     }
 
     return this.ventaRepository.save({
-      fechaVenta: createVentaDto.fechaVenta.valueOf(),
+      totalVenta: createVentaDto.totalVenta.valueOf(),
+      fechaVenta: createVentaDto.fechaVenta,
       cliente: { id: createVentaDto.idCliente },
     });
   }

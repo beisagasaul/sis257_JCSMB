@@ -23,6 +23,8 @@ export class DetallesVentasService {
   ): Promise<DetallesVenta> {
     const existeDetallesVenta = await this.detallesVentaRepository.findOneBy({
       cantidad: createDetallesVentanDto.cantidad,
+      precioUniniratio: createDetallesVentanDto.precioUnitario,
+      total: createDetallesVentanDto.total,
       venta: { id: createDetallesVentanDto.idVenta },
       producto: { id: createDetallesVentanDto.idProducto },
     });
@@ -33,6 +35,8 @@ export class DetallesVentasService {
 
     return this.detallesVentaRepository.save({
       cantidad: createDetallesVentanDto.cantidad.valueOf(),
+      precioUniniratio: createDetallesVentanDto.precioUnitario,
+      total: createDetallesVentanDto.total,
       venta: { id: createDetallesVentanDto.idVenta },
       producto: { id: createDetallesVentanDto.idProducto },
     });

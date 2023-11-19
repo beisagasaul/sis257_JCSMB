@@ -12,7 +12,7 @@ import { CreateDetallesVentaDto } from './dto/create-detalles-venta.dto';
 import { UpdateDetallesVentaDto } from './dto/update-detalles-venta.dto';
 import { ApiTags } from '@nestjs/swagger';
 
-@ApiTags('detalles-ventaF')
+@ApiTags('detalles-venta')
 @Controller('detalles-venta')
 export class DetallesVentaController {
   constructor(private readonly detallesVentaService: DetallesVentasService) {}
