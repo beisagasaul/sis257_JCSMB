@@ -10,15 +10,15 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
 const apellido = ref('')
-const cedula_identidad = ref('')
+const cedulaIdentidad = ref('')
 const id = router.currentRoute.value.params['id']
 
 async function editarCliente() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
       nombre: nombre.value,
-      precio: apellido.value,
-      idCategoria: cedula_identidad.value 
+      apellido: apellido.value,
+      cedulaIdentidad: cedulaIdentidad.value 
     })
     .then(() => router.push('/clientes'))
     .catch((error) => {
@@ -30,7 +30,7 @@ async function editarCliente() {
 async function getCliente() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
     ;(nombre.value = response.data.nombre), (apellido.value = response.data.apellido), 
-    (cedula_identidad.value = response.data.cedulaIdentidad)
+    (cedulaIdentidad.value = response.data.cedulaIdentidad)
   })
 }
 
@@ -79,11 +79,11 @@ onMounted(() => {
           <input
             type="text"
             class="form-control"
-            v-model="cedula_identidad"
-            placeholder="cedula_identidad"
+            v-model="cedulaIdentidad"
+            placeholder="cedulaIdentidad"
             required
           />
-          <label for="cedula_identidad">Cedula de Identidad</label>
+          <label for="cedulaIdentidad">Cedula de Identidad</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">

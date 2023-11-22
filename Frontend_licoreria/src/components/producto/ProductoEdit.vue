@@ -1,46 +1,46 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import http from '@/plugins/axios'
-import router from '@/router'
+import { onMounted, ref } from 'vue';
+import http from '@/plugins/axios';
+import router from '@/router';
+import type { Categoria } from '@/models/categoria';
+
 
 const props = defineProps<{
-  ENDPOINT_API: string
-}>()
-
-const ENDPOINT = props.ENDPOINT_API ?? ''
-const nombre = ref('')
-const precio = ref('')
-const idCategoria = ref('')
-const id = router.currentRoute.value.params['id']
+  ENDPOINT_API: string;
+}>();
+const ENDPOINT = props.ENDPOINT_API ?? '';
+const nombre = ref('');
+const precio = ref('');
+const categoria = ref('id');
+const id = router.currentRoute.value.params['id'];
 
 async function editarProducto() {
-  await http
-    .patch(`${ENDPOINT}/${id}`, {
-      nombre: nombre.value,
-      precio: precio.value,
-      idCategoria: idCategoria.value 
-    })
-    .then(() => router.push('/productos'))
-    .catch((error) => {
-      
-      console.error('Error al editar el producto:', error)
-    })
+  await http.patch(`${ENDPOINT}/${id}`, {
+    nombre: nombre.value,
+    precio: precio.value,
+    idCategoria: idCategoria.value
+  })
+  .then(() => router.push('/productos'))
+  .catch((error) => {
+    console.error('Error al editar el producto:', error);
+  });
 }
 
 async function getProducto() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
-    ;(nombre.value = response.data.nombre), (precio.value = response.data.precio), 
-    (idCategoria.value = response.data.idCategoria)
-  })
+    nombre.value = response.data.nombre;
+    precio.value = response.data.precio;
+    categoria.value = response.data.categoria;
+  });
 }
 
 function goBack() {
-  router.go(-1)
+  router.go(-1);
 }
 
 onMounted(() => {
-  getProducto()
-})
+  getProducto();
+});
 </script>
 
 <template>
@@ -49,14 +49,14 @@ onMounted(() => {
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
         <li class="breadcrumb-item">
-          <RouterLink to="/categorias">Categorias</RouterLink>
+          <RouterLink to="/productos">Productos</RouterLink>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Editar</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Editar Categoria</h2>
+      <h2>Editar Producto</h2>
     </div>
 
     <div class="row">
@@ -73,17 +73,17 @@ onMounted(() => {
             placeholder="Precio"
             required
           />
-          <label for="precio">Precio</label>
+          <label for="Precio">Precio</label>
         </div>
         <div class="form-floating">
           <input
             type="text"
             class="form-control"
-            v-model="idCategoria"
-            placeholder="IdCategoria"
+            v-model="categoria"
+            placeholder="idCategoria"
             required
           />
-          <label for="idCategoria">Id Categoria</label>
+          <label for="idCategoria">id de categoria</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">

@@ -9,13 +9,12 @@ const props = defineProps<{
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
-const precio = ref('')
-const idCategoria = ref('')
-
+const precio = ref('') 
+const idCategoria = ref('') 
 
 async function crearProducto() {
   await http.post(ENDPOINT, { nombre: nombre.value, precio: precio.value, idCategoria: idCategoria.value })
-    .then(() => router.push('/productos'))
+  .then(() => router.push('/productos'))
 }
 
 function goBack() {
@@ -31,14 +30,14 @@ function goBack() {
           <RouterLink to="/">Inicio</RouterLink>
         </li>
         <li class="breadcrumb-item">
-          <RouterLink to="/productos">productos</RouterLink>
+          <RouterLink to="/productos">Productos</RouterLink>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Crear</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Crear Nueva producto</h2>
+      <h2>Crear Nuevo Producto</h2>
     </div>
 
     <div class="row">
@@ -47,15 +46,13 @@ function goBack() {
           <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
         </div>
-        <div class="form-floating">
-        </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="precio" placeholder="Precio" required />
+          <input type="number" class="form-control" v-model="precio" placeholder="Precio" required />
           <label for="precio">Precio</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="idCategoria" placeholder="IdCategoria" required />
-          <label for="idCategoria">idCategoria</label>
+          <input type="number" class="form-control" v-model="idCategoria" placeholder="Id de Categoría" required />
+          <label for="idCategoria">Id de Categoría</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">

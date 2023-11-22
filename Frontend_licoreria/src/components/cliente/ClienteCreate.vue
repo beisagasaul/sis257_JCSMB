@@ -11,11 +11,12 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
 const apellido = ref('')
-const cedula_identidad = ref('')
+const cedulaIdentidad = ref('')
 
 async function crearCliente() {
-  await http.post(ENDPOINT, { nombre: nombre.value, apellido: apellido.value, cedula_identidad: cedula_identidad.value })
-  router.push('/clientes')
+  await http
+  .post(ENDPOINT, { nombre: nombre.value, apellido: apellido.value, cedulaIdentidad: cedulaIdentidad.value })
+  .then(() => router.push('/clientes'))
 }
 
 function goBack() {
@@ -52,8 +53,8 @@ function goBack() {
           <label for="apellido">Apellido</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="cedula_identidad" placeholder="Cedula de Identidad" required />
-          <label for="cedula_identidad">Cedula de Identidad</label>
+          <input type="text" class="form-control" v-model="cedulaIdentidad" placeholder="CedulaIdentidad" required />
+          <label for="cedulaIdentidad">Cedula de Identidad</label>
           
         </div>
         <div class="text-center mt-3">
