@@ -9,13 +9,12 @@ const props = defineProps<{
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
-const precio = ref('')
-const idCategoria = ref('')
+const apellido = ref('')
+const cedula_identidad = ref('')
 
-
-async function crearProducto() {
-  await http.post(ENDPOINT, { nombre: nombre.value, precio: precio.value, idCategoria: idCategoria.value })
-    .then(() => router.push('/productos'))
+async function crearCliente() {
+  await http.post(ENDPOINT, { nombre: nombre.value, apellido: apellido.value, cedula_identidad: cedula_identidad.value })
+  router.push('/clientes')
 }
 
 function goBack() {
@@ -31,35 +30,39 @@ function goBack() {
           <RouterLink to="/">Inicio</RouterLink>
         </li>
         <li class="breadcrumb-item">
-          <RouterLink to="/productos">productos</RouterLink>
+          <RouterLink to="/clientes">Clientes</RouterLink>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Crear</li>
       </ol>
     </nav>
 
     <div class="row">
-      <h2>Crear Nueva producto</h2>
+      <h2>Crear Nuevo Cliente</h2>
     </div>
 
     <div class="row">
-      <form @submit.prevent="crearProducto">
+      <form @submit.prevent="crearCliente">
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
+          <input
+            type="text" 
+            class="form-control" 
+            v-model="nombre" 
+            placeholder="Nombre" 
+            required 
+          />
           <label for="nombre">Nombre</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" v-model="apellido" placeholder="Apellido" required />
+          <label for="apellido">Apellido</label>
         </div>
         <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="precio" placeholder="Precio" required />
-          <label for="precio">Precio</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input type="text" class="form-control" v-model="idCategoria" placeholder="IdCategoria" required />
-          <label for="idCategoria">idCategoria</label>
+          <input type="text" class="form-control" v-model="cedula_identidad" placeholder="Cedula de Identidad" required />
+          <label for="cedula_identidad">Cedula de Identidad</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
-            <font-awesome-icon icon="fa-solid fa-floppy-disk" /> Crear
+            Crear
           </button>
         </div>
       </form>
