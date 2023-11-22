@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
 
+
 const props = defineProps<{
   ENDPOINT_API: string
 }>()
@@ -43,13 +44,7 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearCliente">
         <div class="form-floating mb-3">
-          <input
-            type="text" 
-            class="form-control" 
-            v-model="nombre" 
-            placeholder="Nombre" 
-            required 
-          />
+          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating mb-3">
@@ -59,6 +54,7 @@ function goBack() {
         <div class="form-floating mb-3">
           <input type="text" class="form-control" v-model="cedula_identidad" placeholder="Cedula de Identidad" required />
           <label for="cedula_identidad">Cedula de Identidad</label>
+          
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
