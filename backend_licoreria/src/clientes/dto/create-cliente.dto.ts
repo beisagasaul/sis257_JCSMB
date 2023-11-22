@@ -24,5 +24,5 @@ export class CreateClienteDto {
   @MaxLength(50, {
     message: 'El campo direccion no debe ser mayor a 12 caracteres',
   })
-  readonly ci: string;
+  readonly cedulaIdentidad: string;
 }

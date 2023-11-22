@@ -18,8 +18,13 @@ export class Cliente {
   @Column({ type: 'varchar', length: 50, nullable: false })
   apellido: string;
 
-  @Column({ type: 'varchar', length: 12, nullable: false })
-  ci: string;
+  @Column({
+    name: 'cedula_identidad',
+    type: 'varchar',
+    length: 12,
+    nullable: false,
+  })
+  cedulaIdentidad: string;
 
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;

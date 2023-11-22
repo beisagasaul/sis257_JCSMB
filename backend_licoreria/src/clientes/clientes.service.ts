@@ -20,7 +20,7 @@ export class ClientesService {
     const existeCliente = await this.clienteRepository.findOneBy({
       nombre: createClienteDto.nombre,
       apellido: createClienteDto.apellido,
-      ci: createClienteDto.ci,
+      cedulaIdentidad: createClienteDto.cedulaIdentidad,
     });
     if (existeCliente) {
       throw new ConflictException('el cliente ya existe');
@@ -28,7 +28,7 @@ export class ClientesService {
     return this.clienteRepository.save({
       nombre: createClienteDto.nombre.trim(),
       apellido: createClienteDto.apellido.trim(),
-      ci: createClienteDto.ci.trim(),
+      cedulaIdentidad: createClienteDto.cedulaIdentidad.trim(),
     });
   }
 
