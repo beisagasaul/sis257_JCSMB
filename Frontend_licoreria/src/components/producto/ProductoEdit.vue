@@ -11,7 +11,7 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? '';
 const nombre = ref('');
 const precio = ref('');
-const categoria = ref('id');
+const idCategoria = ref('');
 const id = router.currentRoute.value.params['id'];
 
 async function editarProducto() {
@@ -30,7 +30,7 @@ async function getProducto() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
     nombre.value = response.data.nombre;
     precio.value = response.data.precio;
-    categoria.value = response.data.categoria;
+    idCategoria.value = response.data.idCategoria;
   });
 }
 
@@ -79,7 +79,7 @@ onMounted(() => {
           <input
             type="text"
             class="form-control"
-            v-model="categoria"
+            v-model="idCategoria"
             placeholder="idCategoria"
             required
           />

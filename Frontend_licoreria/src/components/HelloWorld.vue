@@ -8,6 +8,16 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      msg: '¡Hola, sis257!'
+    };
+  }
+};
+</script>
+
 <style scoped>
 .greetings {
   position: fixed;
