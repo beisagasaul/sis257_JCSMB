@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, defineProps } from 'vue';
 import http from '@/plugins/axios';
-import router from '@/router';
-import type { Categoria } from '@/models/categoria';
-
+import { RouterLink } from 'vue-router';
+import router from '@/router'
 
 const props = defineProps<{
   ENDPOINT_API: string;
@@ -15,22 +14,24 @@ const idCategoria = ref('');
 const id = router.currentRoute.value.params['id'];
 
 async function editarProducto() {
-  await http.patch(`${ENDPOINT}/${id}`, {
-    nombre: nombre.value,
-    precio: precio.value,
-    idCategoria: idCategoria.value
-  })
-  .then(() => router.push('/productos'))
-  .catch((error) => {
-    console.error('Error al editar el producto:', error);
-  });
+  await http
+    .patch(`${ENDPOINT}/${id}`, {
+      nombre: nombre.value,
+      precio: precio.value,
+      idCategoria: idCategoria.value 
+    })
+    .then(() => router.push('/productos'))
+    .catch((error) => {
+      
+      console.error('Error al editar el producto:', error)
+    })
 }
 
 async function getProducto() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
     nombre.value = response.data.nombre;
     precio.value = response.data.precio;
-    idCategoria.value = response.data.idCategoria;
+    idCategoria.value = response.data.categoria.id;
   });
 }
 
@@ -56,6 +57,7 @@ onMounted(() => {
     </nav>
 
     <div class="row">
+      <div class="col-12 text-center mt-3 mb-3"></div>
       <h2>Editar Producto</h2>
     </div>
 
@@ -77,7 +79,7 @@ onMounted(() => {
         </div>
         <div class="form-floating">
           <input
-            type="text"
+            type="number"
             class="form-control"
             v-model="idCategoria"
             placeholder="idCategoria"

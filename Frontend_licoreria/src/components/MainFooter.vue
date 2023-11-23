@@ -115,14 +115,14 @@
           <div class="col-lg-3 col-12 mt-5">
             <p class="copyright-text">Sucre © 2023 Licoreria Company</p>
             <p class="copyright-text">
-              Distributed by: <a href="https://themewagon.com">neos</a>
+              Distribuido por: <a href="https://themewagon.com">neos</a>
             </p>
           </div>
 
           <div class="col-lg-8 col-12 mt-lg-5">
             <ul class="site-footer-links">
               <li class="site-footer-link-item">
-                <a href="#" class="site-footer-link">lcoreria &amp; neos</a>
+                <a href="#" class="site-footer-link">licoreria &amp; neos</a>
               </li>
 
               <li class="site-footer-link-item">

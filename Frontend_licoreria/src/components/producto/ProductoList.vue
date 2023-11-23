@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
 import type { Producto } from '@/models/producto';
+import { toUnicode } from 'punycode';
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -36,12 +37,15 @@ onMounted(() => {
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/">Inicio</RouterLink>
+        </li>
         <li class="breadcrumb-item active" aria-current="page">Productos</li>
       </ol>
     </nav>
 
     <div class="row">
+      <div class="col-12 text-center mt-3 mb-3"></div>
       <h2>Lista de Productos</h2>
       <div class="col-12">
         <RouterLink to="/productos/crear">
@@ -62,6 +66,7 @@ onMounted(() => {
             <th scope="col">Id Categoria</th>
             <th scope="col">Nombre De Categoria</th>
             <th scope="col">Acciones</th>
+            <th scope="col">Comprar</th>
           </tr>
         </thead>
         <tbody>
@@ -71,9 +76,9 @@ onMounted(() => {
             <td>{{ producto.precio }}</td>
             <td>{{ producto.fechaCreacion }}</td>
             <td>{{ producto.fechaModificacion }}</td>
-            <td>{{ producto.categoria.id}}</td>
-            <td>{{ producto.categoria.nombre}}</td>
-            
+            <td>{{ producto.categoria.id }}</td>
+            <td>{{ producto.categoria.nombre }}</td>
+
 
             <td>
               <button class="btn text-success" @click="toEdit(producto.id)">
@@ -81,6 +86,11 @@ onMounted(() => {
               </button>
               <button class="btn text-danger" @click="toDelete(producto.id)">
                 <i class="fas fa-trash"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-primary" @click="toUnicode(producto.id)">
+                <i class="fas fa-shopping-cart"></i> vender
               </button>
             </td>
           </tr>

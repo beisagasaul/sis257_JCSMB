@@ -8,7 +8,8 @@
         <li class="breadcrumb-item">
           <router-link to="/categorias">Categoría</router-link>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Editar Categoría</li>
+        <div class="col-12 text-center mt-3 mb-3"></div>
+        <h2 class="breadcrumb-item active" aria-current="page">Editar Categoría</h2>
       </ol>
     </nav>
 

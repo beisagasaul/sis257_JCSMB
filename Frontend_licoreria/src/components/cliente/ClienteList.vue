@@ -43,6 +43,7 @@ onMounted(() => {
     </nav>
 
     <div class="row">
+      <div class="col-12 text-center mt-3 mb-3"></div>
       <h2>Lista de Clientes</h2>
       <div class="col-12">
         <RouterLink to="/clientes/crear">

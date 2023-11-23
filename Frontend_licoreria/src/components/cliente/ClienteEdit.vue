@@ -56,6 +56,7 @@ onMounted(() => {
     </nav>
 
     <div class="row">
+      <div class="col-12 text-center mt-3 mb-3"></div>
       <h2>Editar Cliente</h2>
     </div>
 

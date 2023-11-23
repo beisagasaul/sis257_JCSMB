@@ -39,6 +39,7 @@ function goBack() {
     </nav>
 
     <div class="row">
+      <div class="col-12 text-center mt-3 mb-3"></div>
       <h2>Crear Nuevo Cliente</h2>
     </div>
 
