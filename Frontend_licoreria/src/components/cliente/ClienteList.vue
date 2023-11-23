@@ -89,7 +89,7 @@ onMounted(() => {
 
 <style scoped>
 .table {
-  background-color: #661212;
+  background-color: #e0c8c8;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {

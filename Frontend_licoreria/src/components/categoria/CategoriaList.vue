@@ -81,11 +81,11 @@ onMounted(() => {
 
 <style scoped>
 .table {
-  background-color: #661212;
+  background-color: #bfc992;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: #631a1a;
+  background-color: rgb(32, 29, 29);
 }
 
 .btn {

@@ -12,7 +12,7 @@ const location = useRoute()
         <div class="col-lg-12 col-12 d-flex flex-wrap">
           <p class="d-flex me-4 mb-0">
             <i class="bi-person custom-icon me-2"></i>
-            <strong class="text-dark">Bienvenido a SIS257 Music</strong>
+            <strong class="text-dark">Bienvenido A LICORERIA</strong>
           </p>
         </div>
       </div>
@@ -24,7 +24,7 @@ const location = useRoute()
     :style="'background-color:' + (location.path != '/' ? 'black' : '')"
   >
     <div class="container">
-      <a class="navbar-brand" href="index.html"> SIS257 Music </a>
+      <a class="navbar-brand" href="index.html"> SIS257 Licoreria</a>
 
       <RouterLink v-if="!authStore.token" to="/login" class="btn custom-btn d-lg-none ms-auto me-4"
         >Iniciar Sesión</RouterLink
@@ -54,7 +54,7 @@ const location = useRoute()
           </li>
           <slot v-if="authStore.token">
             <li class="nav-item">
-              <RouterLink to="/categorias" class="nav-link click-scroll">CAtegorias</RouterLink>
+              <RouterLink to="/categorias" class="nav-link click-scroll">Categorias</RouterLink>
             </li>
             <li class="nav-item">
               <RouterLink to="/productos" class="nav-link click-scroll">Productos</RouterLink>
