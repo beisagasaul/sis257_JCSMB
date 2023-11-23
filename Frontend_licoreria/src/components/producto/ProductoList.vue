@@ -66,7 +66,7 @@ onMounted(() => {
             <th scope="col">Id Categoria</th>
             <th scope="col">Nombre De Categoria</th>
             <th scope="col">Acciones</th>
-            <th scope="col">Comprar</th>
+            <th scope="col">Venta</th>
           </tr>
         </thead>
         <tbody>

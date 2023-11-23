@@ -29,10 +29,10 @@ async function editarProducto() {
 
 async function getProducto() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
-    nombre.value = response.data.nombre;
-    precio.value = response.data.precio;
-    idCategoria.value = response.data.categoria.id;
-  });
+    (nombre.value = response.data.nombre),
+    (precio.value = response.data.precio),
+    (idCategoria.value = response.data.categoria.id)
+  })
 }
 
 function goBack() {
@@ -69,7 +69,7 @@ onMounted(() => {
         </div>
         <div class="form-floating">
           <input
-            type="text"
+            type="number"
             class="form-control"
             v-model="precio"
             placeholder="Precio"
