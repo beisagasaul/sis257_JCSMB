@@ -49,7 +49,9 @@ onMounted(() => {
       <h2>Lista de Productos</h2>
       <div class="col-12">
         <RouterLink to="/productos/crear">
-          <font-awesome-icon icon="fa-solid fa-plus" /> Crear Nuevo
+          <font-awesome-icon icon="fa-solid fa-plus" /> CREAR NUEVO
+          <div class="col-12 text-center mt-3 mb-3"></div>
+          <div class="col-12 text-center mt-3 mb-3"></div>
         </RouterLink>
       </div>
     </div>

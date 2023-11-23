@@ -12,15 +12,15 @@ https://templatemo.com/tm-583-festava-live
 -----------------------------------------*/
 :root {
   --white-color:                  #ffffff;
-  --primary-color:                #F8CB2E;
-  --secondary-color:              #EE5007;
+  --primary-color:                #b1f82e;
+  --secondary-color:              #56cf10;
   --section-bg-color:             #f0f8ff;
-  --custom-btn-bg-color:          #EE5007;
-  --custom-btn-bg-hover-color:    #c01f27;
-  --dark-color:                   #000000;
-  --p-color:                      #717275;
+  --custom-btn-bg-color:          #076bee;
+  --custom-btn-bg-hover-color:    #2f1fc0;
+  --dark-color:                   #00000069;
+  --p-color:                      #02021b;
   --border-color:                 #7fffd4;
-  --link-hover-color:             #B22727;
+  --link-hover-color:             #350404;
 
   --body-font-family:             'Outfit', sans-serif;
 
@@ -507,7 +507,7 @@ strong {
 -----------------------------------------*/
 .about-section {
   background-image: url('../images/edward-unsplash-blur.jpg');
-  background-color: #704010;
+  background-color: #1b7010;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -535,7 +535,7 @@ strong {
 .about-text-info {
   backdrop-filter: blur(5px) saturate(180%);
   -webkit-backdrop-filter: blur(5px) saturate(180%);
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(218, 70, 12, 0.438);
   border-radius: var(--border-radius-medium);
   border: 1px solid rgba(209, 213, 219, 0.3);
   position: absolute;
@@ -605,7 +605,7 @@ strong {
 
 .artists-hover {
   background-color: var(--primary-color);
-  background-color: rgba(248, 203, 46, 0.75);
+  background-color: rgba(223, 183, 7, 0.75);
   border-radius: var(--border-radius-medium);
   backdrop-filter: blur(5px) saturate(180%);
   -webkit-backdrop-filter: blur(5px) saturate(180%);

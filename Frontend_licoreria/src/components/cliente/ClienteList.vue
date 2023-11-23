@@ -47,7 +47,9 @@ onMounted(() => {
       <h2>Lista de Clientes</h2>
       <div class="col-12">
         <RouterLink to="/clientes/crear">
-          <font-awesome-icon icon="fa-solid fa-plus" />Crear Nuevo
+          <font-awesome-icon icon="fa-solid fa-plus" />CREAR NUEVO
+          <div class="col-12 text-center mt-3 mb-3"></div>
+          <div class="col-12 text-center mt-3 mb-3"></div>
         </RouterLink>
       </div>
     </div>
@@ -90,8 +92,7 @@ onMounted(() => {
 
 <style scoped>
 .table {
-  background-color: #e0c8c8;
-}
+  background-color: rgba(22, 165, 129, 0.199)}
 
 .table-striped tbody tr:nth-of-type(odd) {
   background-color: #631a1a;

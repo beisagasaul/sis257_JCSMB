@@ -48,7 +48,9 @@ onMounted(() => {
       </div>
       <div class="col-12 text-center">
         <RouterLink to="/categorias/crear">
-          <font-awesome-icon icon="fa-solid fa-plus" style="font-size: 40px;" /> <strong>Crear Nuevo</strong>
+          <font-awesome-icon icon="fa-solid fa-plus" style="font-size: 40px;" /> <strong>CREAR NUEVO</strong>
+          <div class="col-12 text-center mt-3 mb-3"></div>
+          <div class="col-12 text-center mt-3 mb-3"></div>
         </RouterLink>
       </div>
     </div>
@@ -58,8 +60,8 @@ onMounted(() => {
         <thead>
           <tr>
             <th scope="col">N°</th>
-            <th scope="col">nombre</th>
-            <th scope="col">Acción</th>
+            <th scope="col">NOMBRE</th>
+            <th scope="col">ACCION</th>
           </tr>
         </thead>
         <tbody>
@@ -83,7 +85,7 @@ onMounted(() => {
 
 <style scoped>
 .table {
-  background-color: #e8f0c3;
+  background-color: rgba(44, 192, 15, 0.212)
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
