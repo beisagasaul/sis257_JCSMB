@@ -9,32 +9,25 @@ const props = defineProps<{
   ENDPOINT_API: string
 }>()
 const ENDPOINT = props.ENDPOINT_API ?? ''
-var clientes = ref<Cliente[]>([])
+var usuarios = ref<Usuario[]>([])
 
-async function getClientes() {
-  clientes.value = await http.get(ENDPOINT).then((response) => response.data)
+async function getUsuarios() {
+  usuarios.value = await http.get(ENDPOINT).then((response) => response.data)
 }
 
 function toEdit(id: number) {
-  router.push(`/clientes/editar/${id}`)
+  router.push(`/usuarios/editar/${id}`)
 }
 
-
-function formatFecha(fecha) {
-    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    return new Date(fecha).toLocaleDateString(undefined, options);
-  }
-
-
 async function toDelete(id: number) {
-  var r = confirm('¿Está seguro que se desea eliminar el cliente?')
+  var r = confirm('¿Está seguro que se desea eliminar el usuario?')
   if (r == true) {
     await http.delete(`${ENDPOINT}/${id}`).then(() => getClientes())
   }
 }
 
 onMounted(() => {
-  getClientes()
+  getUsuarios()
 })
 </script>
 
@@ -45,15 +38,15 @@ onMounted(() => {
         <li class="breadcrumb-item">
           <RouterLink to="/">Inicio</RouterLink>
         </li>
-        <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+        <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
       </ol>
     </nav>
 
     <div class="row">
       <div class="col-12 text-center mt-3 mb-3"></div>
-      <h2>Lista de Clientes</h2>
+      <h2>Lista de Usuarios</h2>
       <div class="col-12">
-        <RouterLink to="/clientes/crear">
+        <RouterLink to="/usuarios/crear">
           <font-awesome-icon icon="fa-solid fa-plus" />CREAR NUEVO
           <div class="col-12 text-center mt-3 mb-3"></div>
           <div class="col-12 text-center mt-3 mb-3"></div>
@@ -66,27 +59,27 @@ onMounted(() => {
         <thead>
           <tr>
             <th scope="col">N°</th>
-            <th scope="col">nombre</th>
-            <th scope="col">Apellido</th>
-            <th scope="col">Cedula de identidad</th>
-            <th scope="col">fecha de creación</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rol</th>
+            <th scope="col">fecha de creacion</th>
             <th scope="col">fecha de modificación</th>
             <th scope="col">Acción</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(cliente, index) in clientes" :key="cliente.id">
+          <tr v-for="(usuario, index) in usuarios" :key="usuario.id">
             <td scope="row">{{ index + 1 }}</td>
-            <td>{{ cliente.nombre }}</td>
-            <td>{{ cliente.apellido }}</td>
-            <td>{{ cliente.cedulaIdentidad }}</td>
-            <td>{{ formatFecha(cliente.fechaVenta) }}</td>
-            <td>{{ cliente.fechaModificacion }}</td>
+            <td>{{ usuario.usuario }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.rol }}</td>
+            <td>{{ usuario.fechaCreacion }}</td>
+            <td>{{ usuario.fechaModificacion }}</td>
             <td>
-              <button class="btn text-success" @click="toEdit(cliente.id)">
+              <button class="btn text-success" @click="toEdit(usuario.id)">
                 <i class="fas fa-edit"></i>
               </button>
-              <button class="btn text-danger" @click="toDelete(cliente.id)">
+              <button class="btn text-danger" @click="toDelete(usuario.id)">
                 <i class="fas fa-trash"></i>
               </button>
             </td>

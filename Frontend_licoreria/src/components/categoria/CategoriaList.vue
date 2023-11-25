@@ -19,6 +19,11 @@ function toEdit(id: number) {
   router.push(`/categorias/editar/${id}`)
 }
 
+function redirectToOtherTable(id: Number) {
+  router.push(`/categorias/listar/?prducto =${id}`);
+}
+
+
 async function toDelete(id: number) {
   var r = confirm('¿Está seguro que se desea eliminar la categoria?')
   if (r == true) {
@@ -62,6 +67,7 @@ onMounted(() => {
             <th scope="col">N°</th>
             <th scope="col">NOMBRE</th>
             <th scope="col">ACCION</th>
+            <th scope="col">VER PRODUCTOS</th>
           </tr>
         </thead>
         <tbody>
@@ -74,6 +80,11 @@ onMounted(() => {
               </button>
               <button class="btn text-danger" @click="toDelete(categoria.id)">
                 <i class="fas fa-trash"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn number-danger" @click="redirectToOtherTable(categoria.id)">
+                <i class="fas fa-eye"></i>
               </button>
             </td>
           </tr>

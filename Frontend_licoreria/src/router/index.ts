@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import LoginView from "@/views/LoginView.vue"
+import LoginView from '@/views/LoginView.vue'
 
 import { useAuthStore } from '@/stores'
 import { getTokenFromLocalStorage } from '@/helpers'
@@ -34,10 +34,24 @@ const router = createRouter({
       component: () => import('../views/CategoriaView.vue'),
       children: [
         { path: '', component: () => import('../components/categoria/CategoriaList.vue') },
+        { path: 'listar', component: () => import('../components/categoria/Listar.vue') },
         { path: 'crear', component: () => import('../components/categoria/CategoriaCreate.vue') },
         {
           path: 'editar/:id',
           component: () => import('../components/categoria/CategoriaEdit.vue')
+        }
+      ]
+    },
+    {
+      path: '/usuarios',
+      name: 'usuarios',
+      component: () => import('../views/UsuarioView.vue'),
+      children: [
+        { path: '', component: () => import('../components/usuario/UsuarioList.vue') },
+        { path: 'crear', component: () => import('../components/usuario/UsuarioCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/usuario/UsuarioEdit.vue')
         }
       ]
     },
@@ -47,6 +61,7 @@ const router = createRouter({
       component: () => import('../views/ProductoView.vue'),
       children: [
         { path: '', component: () => import('../components/producto/ProductoList.vue') },
+
         { path: 'crear', component: () => import('../components/producto/ProductoCreate.vue') },
         {
           path: 'editar/:id',
@@ -83,4 +98,3 @@ router.beforeEach(async (to) => {
 })
 
 export default router
-
