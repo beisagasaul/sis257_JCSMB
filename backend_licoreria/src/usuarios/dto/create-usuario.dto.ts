@@ -26,8 +26,4 @@ export class CreateUsuarioDto {
   })
   readonly rol: string;
 
-  @ApiProperty()
-  @IsDefined({ message: 'El campo premium debe estar definido' })
-  @IsBoolean({ message: 'El campo premium debe ser de tipo lógico' })
-  readonly premium: boolean;
 }

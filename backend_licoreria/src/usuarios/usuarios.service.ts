@@ -31,7 +31,7 @@ export class UsuariosService {
     usuario.clave = process.env.DEFAULT_PASSWORD;
     usuario.email = createUsuarioDto.email.trim();
     usuario.rol = createUsuarioDto.rol.trim();
-    usuario.premium = createUsuarioDto.premium;
+    
 
     const usuarioBd = await this.usuarioRepository.save(usuario);
     delete usuario.clave;
@@ -73,7 +73,7 @@ export class UsuariosService {
   async validate(usuario: string, clave: string): Promise<Usuario> {
     const usuarioOk = await this.usuarioRepository.findOne({
       where: { usuario },
-      select: ['id', 'usuario', 'clave', 'email', 'rol', 'premium'],
+      select: ['id', 'usuario', 'clave', 'email', 'rol'],
     });
 
     if (!usuarioOk) throw new NotFoundException('Usuario inexistente');
