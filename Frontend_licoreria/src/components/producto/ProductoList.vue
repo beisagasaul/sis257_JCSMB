@@ -65,10 +65,8 @@ onMounted(() => {
             <th scope="col">Precio</th>
             <th scope="col">Fecha De Creacion</th>
             <th scope="col">Fecha De Modificacion</th>
-            <th scope="col">Id Categoria</th>
             <th scope="col">Nombre De Categoria</th>
             <th scope="col">Acciones</th>
-            <th scope="col">Venta</th>
           </tr>
         </thead>
         <tbody>
@@ -78,10 +76,7 @@ onMounted(() => {
             <td>{{ producto.precio }}</td>
             <td>{{ producto.fechaCreacion }}</td>
             <td>{{ producto.fechaModificacion }}</td>
-            <td>{{ producto.categoria.id }}</td>
             <td>{{ producto.categoria.nombre }}</td>
-
-
             <td>
               <button class="btn text-success" @click="toEdit(producto.id)">
                 <i class="fas fa-edit"></i>
@@ -90,11 +85,11 @@ onMounted(() => {
                 <i class="fas fa-trash"></i>
               </button>
             </td>
-            <td>
+            <!-- <td>
               <button class="btn btn-primary" @click="toUnicode(producto.id)">
                 <i class="fas fa-shopping-cart"></i> vender
               </button>
-            </td>
+            </td> -->
           </tr>
         </tbody>
       </table>
