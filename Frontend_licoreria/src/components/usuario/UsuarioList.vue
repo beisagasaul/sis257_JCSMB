@@ -18,6 +18,10 @@ async function getUsuarios() {
 function toEdit(id: number) {
   router.push(`/usuarios/editar/${id}`)
 }
+function formatFecha(fecha: string | number | Date) {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Date(fecha).toLocaleDateString(undefined, options);
+}
 
 async function toDelete(id: number) {
   var r = confirm('¿Está seguro que se desea eliminar el usuario?')
@@ -73,8 +77,8 @@ onMounted(() => {
             <td>{{ usuario.usuario }}</td>
             <td>{{ usuario.email }}</td>
             <td>{{ usuario.rol }}</td>
-            <td>{{ usuario.fechaCreacion }}</td>
-            <td>{{ usuario.fechaModificacion }}</td>
+            <td>{{ formatFecha(usuario.fechaCreacion) }}</td>
+            <td>{{ formatFecha(usuario.fechaModificacion) }}</td>
             <td>
               <button class="btn text-success" @click="toEdit(usuario.id)">
                 <i class="fas fa-edit"></i>

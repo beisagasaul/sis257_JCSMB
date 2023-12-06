@@ -19,6 +19,10 @@
           <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
         </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" v-model="descripcion" placeholder="Descripcion" required />
+          <label for="descripcion">Descripción</label>
+        </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">
             <i class="fas fa-floppy-disk"></i> Guardar
@@ -49,18 +53,21 @@ export default {
     const router = useRouter()
     const ENDPOINT = props.ENDPOINT_API
     const nombre = ref('')
+    const descripcion = ref('')
     const id = router.currentRoute.value.params['id']
 
     async function editarCategoria() {
       await http.patch(`${ENDPOINT}/${id}`, {
         nombre: nombre.value,
+        descripcion: descripcion.value,
       })
       router.push('/categorias')
     }
 
     async function getCategoria() {
       await http.get(`${ENDPOINT}/${id}`).then((response) => {
-        nombre.value = response.data.nombre
+        nombre.value = response.data.nombre,
+        descripcion.value = response.data.descripcion
       })
     }
 
@@ -71,7 +78,7 @@ export default {
     getCategoria()
 
     return {
-      nombre,
+      nombre,descripcion,
       editarCategoria,
       goBack
     }

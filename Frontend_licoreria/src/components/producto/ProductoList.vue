@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import http from '@/plugins/axios'
 import router from '@/router'
 import type { Producto } from '@/models/producto';
-import { toUnicode } from 'punycode';
+
 
 const props = defineProps<{
   ENDPOINT_API: string
@@ -19,6 +19,10 @@ async function getProductos() {
 
 function toEdit(id: number) {
   router.push(`/productos/editar/${id}`)
+}
+function formatFecha(fecha: string | number | Date) {
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+  return new Date(fecha).toLocaleDateString(undefined, options);
 }
 
 async function toDelete(id: number) {
@@ -63,9 +67,10 @@ onMounted(() => {
             <th scope="col">N°</th>
             <th scope="col">Nombre</th>
             <th scope="col">Precio</th>
+            <th scope="col">Stock</th>
             <th scope="col">Fecha De Creacion</th>
             <th scope="col">Fecha De Modificacion</th>
-            <th scope="col">Nombre De Categoria</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -74,8 +79,9 @@ onMounted(() => {
             <th scope="row">{{ index + 1 }}</th>
             <td>{{ producto.nombre }}</td>
             <td>{{ producto.precio }}</td>
-            <td>{{ producto.fechaCreacion }}</td>
-            <td>{{ producto.fechaModificacion }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ formatFecha(producto.fechaCreacion) }}</td>
+            <td>{{ formatFecha(producto.fechaModificacion) }}</td>
             <td>{{ producto.categoria.nombre }}</td>
             <td>
               <button class="btn text-success" @click="toEdit(producto.id)">

@@ -2,7 +2,16 @@
 import { onMounted, ref, defineProps } from 'vue';
 import http from '@/plugins/axios';
 import { RouterLink } from 'vue-router';
-import router from '@/router'
+import router from '@/router';
+import type { Categoria } from '@/models/categoria';
+
+var categorias = ref<Categoria[]>([])
+async function getCategorias() {
+  categorias.value = await http.get('categorias').then((response) => response.data)
+}
+onMounted(() => {
+  getCategorias()
+})
 
 const props = defineProps<{
   ENDPOINT_API: string;
@@ -10,28 +19,33 @@ const props = defineProps<{
 const ENDPOINT = props.ENDPOINT_API ?? '';
 const nombre = ref('');
 const precio = ref('');
+const stock = ref('');
 const idCategoria = ref('');
 const id = router.currentRoute.value.params['id'];
+
 
 async function editarProducto() {
   await http
     .patch(`${ENDPOINT}/${id}`, {
       nombre: nombre.value,
       precio: precio.value,
-      idCategoria: idCategoria.value 
+      stock: stock.value,
+      idCategoria: idCategoria.value
     })
     .then(() => router.push('/productos'))
     .catch((error) => {
-      
+
       console.error('Error al editar el producto:', error)
     })
 }
 
+
 async function getProducto() {
   await http.get(`${ENDPOINT}/${id}`).then((response) => {
     (nombre.value = response.data.nombre),
-    (precio.value = response.data.precio),
-    (idCategoria.value = response.data.categoria.id)
+      (precio.value = response.data.precio),
+      (stock.value = response.data.stock),
+      (idCategoria.value = response.data.categoria.id)
   })
 }
 
@@ -48,7 +62,9 @@ onMounted(() => {
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/">Inicio</RouterLink>
+        </li>
         <li class="breadcrumb-item">
           <RouterLink to="/productos">Productos</RouterLink>
         </li>
@@ -68,24 +84,19 @@ onMounted(() => {
           <label for="nombre">Nombre</label>
         </div>
         <div class="form-floating">
-          <input
-            type="number"
-            class="form-control"
-            v-model="precio"
-            placeholder="Precio"
-            required
-          />
+          <input type="number" class="form-control" v-model="precio" placeholder="Precio" required />
           <label for="Precio">Precio</label>
         </div>
         <div class="form-floating">
-          <input
-            type="number"
-            class="form-control"
-            v-model="idCategoria"
-            placeholder="idCategoria"
-            required
-          />
-          <label for="idCategoria">id de categoria</label>
+          <input type="number" class="form-control" v-model="stock" placeholder="Stock" required />
+          <label for="stock">Stock</label>
+        </div>
+        <div class="form-floating">
+          <select v-model="idCategoria" class="form-select">
+            <option v-for="categoria in categorias" :value="categoria.id" :key="categoria.id">{{ categoria.nombre }}
+            </option>
+          </select>
+          <label for="categoria">Categoría</label>
         </div>
         <div class="text-center mt-3">
           <button type="submit" class="btn btn-primary btn-lg">

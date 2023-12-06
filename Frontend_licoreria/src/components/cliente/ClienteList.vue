@@ -20,10 +20,10 @@ function toEdit(id: number) {
 }
 
 
-function formatFecha(fecha) {
+function formatFecha(fecha: string | number | Date) {
     const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
     return new Date(fecha).toLocaleDateString(undefined, options);
-  }
+}
 
 
 async function toDelete(id: number) {
@@ -80,8 +80,8 @@ onMounted(() => {
             <td>{{ cliente.nombre }}</td>
             <td>{{ cliente.apellido }}</td>
             <td>{{ cliente.cedulaIdentidad }}</td>
-            <td>{{ formatFecha(cliente.fechaVenta) }}</td>
-            <td>{{ cliente.fechaModificacion }}</td>
+            <td>{{ formatFecha(cliente.fechaCreacion) }}</td>
+            <td>{{ formatFecha(cliente.fechaModificacion )}}</td>
             <td>
               <button class="btn text-success" @click="toEdit(cliente.id)">
                 <i class="fas fa-edit"></i>

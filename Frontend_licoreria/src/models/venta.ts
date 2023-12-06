@@ -1,4 +1,5 @@
-import type { DetallesVenta } from "./detallesVenta";
+import type { Cliente } from "./cliente";
+import type { DetallesVenta } from "./detalle";
 
 export interface Venta {
     id: number;
@@ -6,4 +7,5 @@ export interface Venta {
     fechaVenta: Date;
     idCliente: number;
     detalles: DetallesVenta[];
+    cliente: Cliente;
   }

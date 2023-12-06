@@ -1,3 +1,5 @@
+import type { Venta } from "./venta";
+
 export interface Cliente {
   id: number,
   nombre: string,
@@ -5,5 +7,5 @@ export interface Cliente {
   cedulaIdentidad: string,
   fechaCreacion: Date,
   fechaModificacion: Date,
-
+  ventas: Venta[];
 }

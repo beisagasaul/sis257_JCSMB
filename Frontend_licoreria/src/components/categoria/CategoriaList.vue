@@ -66,6 +66,7 @@ onMounted(() => {
           <tr>
             <th scope="col">N°</th>
             <th scope="col">NOMBRE</th>
+            <th scope="col">DESCRIPCION</th>
             <th scope="col">ACCION</th>
             <th scope="col">VER PRODUCTOS</th>
           </tr>
@@ -74,6 +75,7 @@ onMounted(() => {
           <tr v-for="(categoria, index) in categorias" :key="categoria.id">
             <td scope="row">{{ index + 1 }}</td>
             <td>{{ categoria.nombre }}</td>
+            <td>{{ categoria.descripcion }}</td>
             <td>
               <button class="btn text-success" @click="toEdit(categoria.id)">
                 <i class="fas fa-edit"></i>

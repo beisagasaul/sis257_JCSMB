@@ -9,10 +9,11 @@ const props = defineProps<{
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
 const nombre = ref('')
+const descripcion = ref('')
 
 
 async function crearCategoria() {
-  await http.post(ENDPOINT, { nombre: nombre.value })
+  await http.post(ENDPOINT, { nombre: nombre.value, descripcion: descripcion.value })
     .then(() => router.push('/categorias'))
 }
 
@@ -25,9 +26,11 @@ function goBack() {
   <div class="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><RouterLink to="/">Inicio</RouterLink></li>
         <li class="breadcrumb-item">
-          <RouterLink to="/series">categorias</RouterLink>
+          <RouterLink to="/">Inicio</RouterLink>
+        </li>
+        <li class="breadcrumb-item">
+          <RouterLink to="/categorias">categorias</RouterLink>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Crear</li>
       </ol>
@@ -41,14 +44,14 @@ function goBack() {
     <div class="row">
       <form @submit.prevent="crearCategoria">
         <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            v-model="nombre"
-            placeholder="Nombre"
-            required
-          />
+          <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
           <label for="nombre">Nombre</label>
+        </div>
+        <div class="form-floating">
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" v-model="descripcion" placeholder="Descripcion" required />
+          <label for="descripcion">Descripción</label>
         </div>
         <div class="form-floating">
         </div>

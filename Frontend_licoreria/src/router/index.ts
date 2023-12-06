@@ -56,6 +56,33 @@ const router = createRouter({
       ]
     },
     {
+      path: '/detalles',
+      name: 'detalles',
+      component: () => import('../views/DetalleView.vue'),
+      children: [
+        { path: '', component: () => import('../components/detalle/DetalleList.vue') },
+        { path: 'crear', component: () => import('../components/detalle/DetalleCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/detalle/DetalleEdit.vue')
+        }
+      ]
+    },
+    {
+      path: '/ventas',
+      name: 'ventas',
+      component: () => import('../views/VentaView.vue'),
+      children: [
+        { path: '', component: () => import('../components/venta/VentaList.vue') },
+
+        { path: 'crear', component: () => import('../components/venta/VentaCreate.vue') },
+        {
+          path: 'editar/:id',
+          component: () => import('../components/venta/VentaEdit.vue')
+        }
+      ]
+    },
+    {
       path: '/productos',
       name: 'productos',
       component: () => import('../views/ProductoView.vue'),
